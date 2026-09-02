@@ -14,11 +14,16 @@ inventory → dry-run → apply
 - CLI validator: [docs/runbook/cli_validator_v0.md](docs/runbook/cli_validator_v0.md)
 - Dry-run CLI: [docs/runbook/cli_validator_dry_run_v0.md](docs/runbook/cli_validator_dry_run_v0.md)
 - Inventory CLI: [docs/runbook/cli_validator_inventory_v0.md](docs/runbook/cli_validator_inventory_v0.md)
+- Gated apply stub: [docs/runbook/cli_validator_apply_gated_v0.md](docs/runbook/cli_validator_apply_gated_v0.md)
 
 ## CLI (local only)
 ```bash
 python3 cli/validate_apply.py docs/runbook/applies/20260902_169.58.250.236_suno-sb.md --expect-stops HS03
 python3 cli/validate_dry_run.py docs/runbook/dry_runs/20260902_169.58.250.236_suno-sb.md
 python3 cli/validate_inventory.py docs/runbook/runs/20260902_169.58.250.236.md
+python3 cli/apply_gated.py \
+  --inventory docs/runbook/runs/20260902_169.58.250.236.md \
+  --dry-run docs/runbook/dry_runs/20260902_169.58.250.236_suno-sb.md \
+  --apply docs/runbook/applies/20260902_169.58.250.236_suno-sb.md
 ```
 Does **not** apply on any host.
