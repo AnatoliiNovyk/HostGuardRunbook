@@ -9,3 +9,4 @@ inventory → dry-run → apply
 ## Docs
 - Checklist: [docs/runbook/inventory_checklist_v1.md](docs/runbook/inventory_checklist_v1.md)
 - Reference run (inventory-only): [docs/runbook/runs/20260902_169.58.250.236.md](docs/runbook/runs/20260902_169.58.250.236.md)
+- Dry-run spec: [docs/runbook/dry_run_v0.md](docs/runbook/dry_run_v0.md)
