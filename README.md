@@ -6,6 +6,9 @@ inventory → dry-run → apply
 
 **UX №1:** існуючий прод на тому ж хості (Coolify/Traefik multi-tenant).
 
+## Milestone
+- **CLI v0 frozen:** [docs/runbook/MILESTONE_CLI_v0.md](docs/runbook/MILESTONE_CLI_v0.md)
+
 ## Docs
 - Checklist: [docs/runbook/inventory_checklist_v1.md](docs/runbook/inventory_checklist_v1.md)
 - Reference run (inventory-only): [docs/runbook/runs/20260902_169.58.250.236.md](docs/runbook/runs/20260902_169.58.250.236.md)
