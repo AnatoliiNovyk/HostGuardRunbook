@@ -1,0 +1,34 @@
+name: cli-smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: validate_inventory (stops none)
+        run: python3 cli/validate_inventory.py docs/runbook/runs/20260902_169.58.250.236.md
+      - name: validate_dry_run (stops none)
+        run: python3 cli/validate_dry_run.py docs/runbook/dry_runs/20260902_169.58.250.236_suno-sb.md
+      - name: validate_apply (--expect-stops HS03)
+        run: python3 cli/validate_apply.py docs/runbook/applies/20260902_169.58.250.236_suno-sb.md --expect-stops HS03
+      - name: apply_gated (expect GATED FAIL, exit 1)
+        run: |
+          set +e
+          out=$(python3 cli/apply_gated.py \
+            --inventory docs/runbook/runs/20260902_169.58.250.236.md \
+            --dry-run docs/runbook/dry_runs/20260902_169.58.250.236_suno-sb.md \
+            --apply docs/runbook/applies/20260902_169.58.250.236_suno-sb.md 2>&1)
+          code=$?
+          printf '%s\n' "$out"
+          echo "exit=$code"
+          printf '%s\n' "$out" | grep -q "GATED FAIL" || { echo "error: missing GATED FAIL"; exit 1; }
+          test "$code" -eq 1 || { echo "error: expected exit 1, got $code"; exit 1; }
+          echo "ok: apply_gated refused host apply as expected"
