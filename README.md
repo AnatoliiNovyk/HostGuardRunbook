@@ -27,3 +27,6 @@ python3 cli/apply_gated.py \
   --apply docs/runbook/applies/20260902_169.58.250.236_suno-sb.md
 ```
 Does **not** apply on any host.
+
+## CI
+- Smoke: [docs/runbook/ci_cli_smoke_v0.md](docs/runbook/ci_cli_smoke_v0.md) (`.github/workflows/cli-smoke.yml`)
